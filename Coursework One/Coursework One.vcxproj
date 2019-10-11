@@ -154,6 +154,7 @@
     <ClCompile Include="Coursework One.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GeneratePuzzle.h" />
     <ClInclude Include="MatrixTemplate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
