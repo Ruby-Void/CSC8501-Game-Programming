@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Coursework One.cpp" />
+    <ClCompile Include="GeneratePuzzle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratePuzzle.h" />

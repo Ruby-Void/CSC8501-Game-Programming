@@ -1,69 +1,36 @@
 #include <iostream>
-#include <sstream>
-#include <string>
-#include "MatrixTemplate.h"
-#include <vector>
-#include <algorithm>
-#include <time.h>
+#include "GeneratePuzzle.h"
 
 using namespace std;
 
-int* generateSetOfNumbers(int n) {
-	int p[20] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-
-	for (int i = 19; i > 0; --i) {
-		int j = rand() % i;
-		int temp = p[i];
-		p[i] = p[j];
-		p[j] = temp;
-	}
-
-	//copy first n elements from p to arr
-	static int returnArray[15];
-	for (int i = 0; i < n; ++i) {
-		returnArray[i] = p[i];
-	}
-
-	return returnArray;
-}
-
 int main() {
-	srand(time(0));
+	const int MATRIXSIZE = 4;	
+	GeneratePuzzle* puzzle = new GeneratePuzzle(MATRIXSIZE);
+	puzzle->populatePuzzle(1, 10000);
 
-	const int MATRIXSIZE = 4;
-	const int MINRANGE = 1;
-	const int MAXRANGE = 21;
-
-	Matrix<int>* puzzle = new Matrix<int>(MATRIXSIZE, MATRIXSIZE);
-
-	int* testArray = generateSetOfNumbers(15);
-
-	for (int i = 0; i < 15; i++) {
-		cout << *(testArray + i) << endl;
+	for (int row = 0; row < MATRIXSIZE; row++) {
+		for (int column = 0; column < MATRIXSIZE; column++) {
+			if (puzzle->getPuzzle()->getElement(row, column) == NULL) {
+				cout << "NULL" << endl;
+			}
+			else {
+				cout << puzzle->getPuzzle()->getElement(row, column) << endl;
+			}
+		}
 	}
 
 	cout << endl;
 
-	int counter = -1;
-	for (int row = 0; row < MATRIXSIZE; row++) {
-		for (int column = 0; column < MATRIXSIZE; column++) {
-			if (row == 0 && column == 0) {
-				puzzle->setElement(row, column, NULL);
-			}
-			else {
-				puzzle->setElement(row, column, *(testArray + counter));
-			}
-			counter++;
-		}
-	}
+	GeneratePuzzle* puzzle2 = new GeneratePuzzle(MATRIXSIZE);
+	puzzle2->populatePuzzle(1, 10000);
 
 	for (int row = 0; row < MATRIXSIZE; row++) {
 		for (int column = 0; column < MATRIXSIZE; column++) {
-			if (puzzle->getElement(row, column) == NULL) {
+			if (puzzle2->getPuzzle()->getElement(row, column) == NULL) {
 				cout << "NULL" << endl;
 			}
 			else {
-				cout << puzzle->getElement(row, column) << endl;
+				cout << puzzle2->getPuzzle()->getElement(row, column) << endl;
 			}
 		}
 	}

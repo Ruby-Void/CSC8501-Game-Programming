@@ -24,6 +24,9 @@
     <ClCompile Include="Coursework One.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratePuzzle.cpp">
+      <Filter>01 - Code\02 - Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixTemplate.h">
