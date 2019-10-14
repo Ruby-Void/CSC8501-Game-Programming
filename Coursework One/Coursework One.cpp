@@ -1,15 +1,85 @@
+#include "Puzzle.h"
+#include "GeneratedPuzzle.h"
+#include "UserPuzzle.h"
+#include "FilePuzzle.h"
+#include <vector>
 #include <iostream>
-#include "GeneratePuzzle.h"
 
 using namespace std;
 
 int main() {
-	const int MATRIXSIZE = 4;	
-	GeneratePuzzle* puzzle = new GeneratePuzzle(MATRIXSIZE);
-	puzzle->populatePuzzle(1, 10000);
+	const unsigned int POLYTEST = 5;
+	vector<int> pattern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+	vector<Puzzle*> testVector;
 
-	for (int row = 0; row < MATRIXSIZE; row++) {
-		for (int column = 0; column < MATRIXSIZE; column++) {
+	for (int i = 0; i < POLYTEST; i++) {
+		FilePuzzle* clone = new FilePuzzle();
+		clone->populatePuzzle(pattern);
+		testVector.push_back(clone);
+	}	
+
+	for (auto puzzle : testVector) {
+		puzzle->printPuzzle();
+		cout << endl;
+	}
+}
+
+/*	
+	// GENERATE PUZZLE
+	
+	#include "GeneratePuzzle.h"
+
+	const int numOfConfig = 4;
+	GeneratePuzzle* puzzleConfig = new GeneratePuzzle(numOfConfig);
+	puzzleConfig->populatePuzzle();
+
+	for (auto puzzle : puzzleConfig->getPuzzleConfigurations()) {
+		for (int row = 0; row < puzzleConfig->getMatrixSize(); row++) {
+			for (int column = 0; column < puzzleConfig->getMatrixSize(); column++) {
+				if (puzzle->getElement(row, column) == NULL) {
+					cout << "NULL" << endl;
+				}
+				else {
+					cout << puzzle->getElement(row, column) << endl;
+				}
+			}
+		}
+		cout << endl;
+	}
+
+	delete puzzleConfig;	
+*/
+
+/*
+	// USER INPUT PUZZLE
+
+	#include "UserPuzzle.h"
+
+	unsigned int getIntegerInput(string message) {
+		
+	}
+
+	UserPuzzle* puzzle = new UserPuzzle();
+	vector<int> inputs;
+
+	for (int row = 0; row < puzzle->getMatrixSize(); row++) {
+		for (int column = 0; column < puzzle->getMatrixSize(); column++) {
+			if (row == 3 && column == 3) {
+				puzzle->addElement(row, column, NULL);
+			}
+			else {
+				unsigned int input;
+				do {
+					input = getIntegerInput("Row: " + to_string(row + 1) + " Column: " + to_string(column + 1) + " Input: ");
+				} while (find(inputs.begin(), inputs.end(), input) != inputs.end());
+				inputs.push_back(input);
+				puzzle->addElement(row, column, input);				
+			}
+		}
+	}
+	
+	for (int row = 0; row < puzzle->getMatrixSize(); row++) {
+		for (int column = 0; column < puzzle->getMatrixSize(); column++) {
 			if (puzzle->getPuzzle()->getElement(row, column) == NULL) {
 				cout << "NULL" << endl;
 			}
@@ -18,25 +88,7 @@ int main() {
 			}
 		}
 	}
-
-	cout << endl;
-
-	GeneratePuzzle* puzzle2 = new GeneratePuzzle(MATRIXSIZE);
-	puzzle2->populatePuzzle(1, 10000);
-
-	for (int row = 0; row < MATRIXSIZE; row++) {
-		for (int column = 0; column < MATRIXSIZE; column++) {
-			if (puzzle2->getPuzzle()->getElement(row, column) == NULL) {
-				cout << "NULL" << endl;
-			}
-			else {
-				cout << puzzle2->getPuzzle()->getElement(row, column) << endl;
-			}
-		}
-	}
-}
-
-
+*/
 
 /*
 char getCharInput(string message) {
@@ -51,7 +103,9 @@ char getCharInput(string message) {
 	}
 	return ' ';
 }
+*/
 
+/*
 int getIntegerInput(string message) {
 	string input;
 	int numericalInput;
@@ -65,49 +119,5 @@ int getIntegerInput(string message) {
 		}
 	}
 	return 0;
-}
-
-const int SIZE = 4;
-int gridTest[SIZE][SIZE];
-
-char* inputType = new char(' ');
-
-bool playing = true;
-while (playing) {
-	while (*inputType != 'M' && *inputType != 'A') {
-		string message = "Manual (M) or Automatic (A) input: ";
-		*inputType = getCharInput(message);
-	}
-
-	if (*inputType == 'M') {
-		cout << "Manual" << endl;
-		for (int row = 0; row < SIZE; row++) {
-			for (int column = 0; column < SIZE; column++) {
-				if (row == 3 && column == 3) {
-					gridTest[row][column] = NULL;
-				}
-				else {
-					string message = "Value at (" + to_string(row) + ", " + to_string(column) + "): ";
-					gridTest[row][column] = getIntegerInput(message);
-				}
-			}
-		}
-	}
-	else if (*inputType == 'A') {
-		cout << "Automatic" << endl;
-	}
-
-	cout << "Grid: 4 X 4" << endl;
-	for (int row = 0; row < SIZE; row++) {
-		string output = " ------------------------------\n";
-		for (int column = 0; column < SIZE; column++) {
-			(gridTest[row][column] < 10) ? output.append(" |  ") : output.append(" | ");
-			output.append(to_string(gridTest[row][column]));
-			output.append(" | ");
-		}
-		cout << output << endl;
-	}
-
-	playing = false;
 }
 */
