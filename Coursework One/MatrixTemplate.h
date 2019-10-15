@@ -6,7 +6,9 @@ template <typename T>
 class Matrix {
 public:
 	Matrix(unsigned int x = defaultX, unsigned int y = defaultY);
+	Matrix(const Matrix<T>& sourceMatrix);
 	~Matrix();
+	Matrix<T>& operator=(const Matrix<T>& sourceMatrix);
 	int getSizeX() const { return sizeX; }
 	int getSizeY() const { return sizeY; }
 	T getElement(unsigned int x, unsigned int y) const;
@@ -26,6 +28,25 @@ Matrix<T>::Matrix(unsigned int x, unsigned int y) :
 	for (int i = 0; i < sizeX; ++i) {
 		cells[i] = new T[sizeY];
 	}
+}
+
+template <typename T>
+Matrix<T>::Matrix(const Matrix<T>& sourceMatrix) {
+	*this = sourceMatrix;
+}
+
+template <typename T>
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& sourceMatrix) {
+	sizeX = sourceMatrix.sizeX;
+	sizeY = sourceMatrix.sizeY;
+	cells = new T * [sizeX];
+	for (int i = 0; i < sizeX; ++i) {
+		cells[i] = new T[sizeY];
+		for (int j = 0; j < sizeY; j++) {
+			cells[i][j] = sourceMatrix.cells[i][j];
+		}
+	}
+	return *this;
 }
 
 template <typename T>

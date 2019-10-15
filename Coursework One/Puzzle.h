@@ -7,11 +7,14 @@ using namespace std;
 class Puzzle {
 public:
 	Puzzle();
-	virtual ~Puzzle();
-	virtual unsigned int getMatrixSize() const { return matrixSize; }
-	virtual Matrix<int>* getPuzzle() const { return puzzle; }	
-	virtual void printPuzzle();
+	~Puzzle();
+	Matrix<int>& getPuzzle() { return matrix; }
+	unsigned int getMatrixSize() const { return matrixSize; }
+	void createSolutions();
+	string printPuzzle();
+	string printPuzzleSolution();
 protected:
-	Matrix<int>* puzzle;
 	const static unsigned int matrixSize = 4;
+	Matrix<int> matrix;
+	unsigned int rowSolutions, columnSolutions, reverseRowSolutions, reverseColumnSolutions;
 };

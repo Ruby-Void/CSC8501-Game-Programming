@@ -153,25 +153,16 @@
   <ItemGroup>
     <ClCompile Include="Coursework One.cpp" />
     <ClCompile Include="FileHandler.cpp" />
-    <ClCompile Include="FilePuzzle.cpp" />
-    <ClCompile Include="GeneratedPuzzle.cpp" />
-    <ClCompile Include="GeneratePuzzle2.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="PuzzleCollection.cpp" />
-    <ClCompile Include="UserPuzzle.cpp" />
+    <ClCompile Include="PuzzleFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHandler.h" />
-    <ClInclude Include="FilePuzzle.h" />
-    <ClInclude Include="GeneratedPuzzle.h" />
-    <ClInclude Include="GeneratePuzzle2.h" />
     <ClInclude Include="MatrixTemplate.h" />
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleCollection.h" />
-    <ClInclude Include="UserPuzzle.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\..\..\Downloads\data.txt" />
+    <ClInclude Include="PuzzleFactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

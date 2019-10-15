@@ -8,8 +8,8 @@ class PuzzleCollection {
 public:
 	PuzzleCollection();
 	~PuzzleCollection();
-	vector<Puzzle*> getPuzzleSet() const { return puzzle; }
-	void addPuzzle(Puzzle* puzzle);
+	vector<Puzzle> getPuzzleSet() const { return puzzleSet; }
+	void addPuzzle(Puzzle puzzle);
 private:
-	vector<Puzzle*> puzzleSet;
+	vector<Puzzle> puzzleSet;
 };

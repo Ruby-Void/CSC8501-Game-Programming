@@ -19,36 +19,21 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="01 - Code\02 - Source Files\First Version">
-      <UniqueIdentifier>{f55a6d0f-c0a4-4937-a293-297190b4b073}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01 - Code\01 - Header Files\First Version">
-      <UniqueIdentifier>{e0bf2c00-8239-42d9-900f-fcee70f81ae3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Puzzle.cpp">
-      <Filter>01 - Code\02 - Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileHandler.cpp">
-      <Filter>01 - Code\02 - Source Files\First Version</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratePuzzle2.cpp">
-      <Filter>01 - Code\02 - Source Files\First Version</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedPuzzle.cpp">
-      <Filter>01 - Code\02 - Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UserPuzzle.cpp">
-      <Filter>01 - Code\02 - Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Coursework One.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FilePuzzle.cpp">
+    <ClCompile Include="PuzzleFactory.cpp">
+      <Filter>01 - Code\02 - Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PuzzleCollection.cpp">
+      <Filter>01 - Code\02 - Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Puzzle.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,31 +41,17 @@
     <ClInclude Include="MatrixTemplate.h">
       <Filter>01 - Code\00 - Template Files</Filter>
     </ClInclude>
-    <ClInclude Include="Puzzle.h">
+    <ClInclude Include="PuzzleFactory.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileHandler.h">
-      <Filter>01 - Code\01 - Header Files\First Version</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratePuzzle2.h">
-      <Filter>01 - Code\01 - Header Files\First Version</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedPuzzle.h">
-      <Filter>01 - Code\01 - Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UserPuzzle.h">
-      <Filter>01 - Code\01 - Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilePuzzle.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PuzzleCollection.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\..\..\Downloads\data.txt">
-      <Filter>00 - Resource Files</Filter>
-    </Text>
+    <ClInclude Include="Puzzle.h">
+      <Filter>01 - Code\01 - Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
