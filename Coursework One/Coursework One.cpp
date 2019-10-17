@@ -11,20 +11,29 @@ int main() {
 	PuzzleCollection collection;
 	PuzzleFactory factory;
 	FileHandler handler;	
-	handler.readFile("data.txt");	
 
-	if (handler.getConfigurations() > 0) {
-		for (auto puzzlePattern : handler.getInputPatterns()) {
-			collection.addPuzzle(factory.createFilePattern(puzzlePattern));
-		}
+	bool running = true;
 
-		for (auto puzzle : collection.getPuzzleSet()) {
-			cout << puzzle.printPuzzle() << endl;
+	while (running) {
+		collection.addPuzzle(factory.createGeneratedPattern());
+		collection.addPuzzle(factory.createUserPattern());
+
+		handler.readFile("data.txt");
+
+		if (handler.getConfigurations() > 0) {
+			for (auto puzzlePattern : handler.getInputPatterns()) {
+				collection.addPuzzle(factory.createFilePattern(puzzlePattern));
+			}
 		}
+		else {
+			cout << "No configurations..." << endl;
+		}
+		running = false;
 	}
-	else {
-		cout << "No configurations..." << endl;
-	}
+	
+	for (auto puzzle : collection.getPuzzleSet()) {
+		cout << puzzle.printPuzzle() << endl;
+	}	
 }
 
 /*

@@ -1,3 +1,7 @@
+// Coursework One - Puzzle Factory Class
+// Author: Ciaran Halliburton
+// Student ID: 190595298
+// Date: 17-10-2019
 #include "PuzzleFactory.h"
 #include <algorithm>
 #include <numeric>
@@ -37,7 +41,7 @@ Puzzle PuzzleFactory::createUserPattern() {
 	unsigned int input;
 	for (int i = 0; i < puzzleSize; i++) {
 		do {
-			input = getIntegerInput("Input: ");
+			input = getIntegerInput(("Input (" + to_string(i + 1) + "): "));
 		} while (find(pattern.begin(), pattern.end(), input) != pattern.end());
 		pattern.push_back(input);
 	}

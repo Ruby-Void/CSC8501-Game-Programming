@@ -1,3 +1,7 @@
+// Coursework One - Puzzle Class
+// Author: Ciaran Halliburton
+// Student ID: 190595298
+// Date: 17-10-2019
 #pragma once
 #include "MatrixTemplate.h"
 #include <vector>
