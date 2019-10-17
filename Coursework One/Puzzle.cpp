@@ -6,7 +6,7 @@
 #include <string>
 
 Puzzle::Puzzle() {
-	matrix = Matrix<int>(matrixSize, matrixSize);
+	matrix = Matrix<unsigned int>(matrixSize, matrixSize);
 }
 
 Puzzle::~Puzzle() {
@@ -14,13 +14,16 @@ Puzzle::~Puzzle() {
 }
 
 void Puzzle::createSolutions() {
-
+	rowSolutions = 0;
+	columnSolutions = 0;
+	reverseRowSolutions = 0;
+	reverseColumnSolutions = 0;
 }
 
 string Puzzle::printPuzzle() {
 	string puzzleFormat = "";
-	for (int row = 0; row < matrixSize; row++) {
-		for (int column = 0; column < matrixSize; column++) {
+	for (unsigned int row = 0; row < matrixSize; row++) {
+		for (unsigned int column = 0; column < matrixSize; column++) {
 			if (!(row == 3 && column == 3)) {
 				if (matrix.getElement(row, column) < 10) {
 					puzzleFormat.append(to_string(matrix.getElement(row, column)));

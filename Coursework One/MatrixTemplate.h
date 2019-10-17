@@ -1,3 +1,7 @@
+// Coursework One - Matrix Template
+// Author: Ciaran Halliburton
+// Student ID: 190595298
+// Date: 17-10-2019
 #include <iostream>
 
 using namespace std;
@@ -24,6 +28,8 @@ protected:
 template <typename T>
 Matrix<T>::Matrix(unsigned int x, unsigned int y) :
 	sizeX(x), sizeY(y) {
+	static_assert(is_same<T, unsigned int>::value || is_same<T, int>::value || is_same<T, float>::value || is_same<T, double>::value, "Binary Tree Template must be of type <float>, <int>, <unsigned int> or <double>.");
+
 	cells = new T * [sizeX];
 	for (int i = 0; i < sizeX; ++i) {
 		cells[i] = new T[sizeY];

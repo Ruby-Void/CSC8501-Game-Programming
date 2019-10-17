@@ -1,4 +1,4 @@
-// Coursework One - File Handler Class
+// Coursework One - File Handler Header
 // Author: Ciaran Halliburton
 // Student ID: 190595298
 // Date: 17-10-2019

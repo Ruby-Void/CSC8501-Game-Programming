@@ -1,4 +1,4 @@
-// Coursework One - Puzzle Collection Class
+// Coursework One - Puzzle Collection Header
 // Author: Ciaran Halliburton
 // Student ID: 190595298
 // Date: 17-10-2019

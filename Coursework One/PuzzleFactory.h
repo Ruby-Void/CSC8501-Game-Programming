@@ -1,4 +1,4 @@
-// Coursework One - Puzzle Factory Class
+// Coursework One - Puzzle Factory Header
 // Author: Ciaran Halliburton
 // Student ID: 190595298
 // Date: 17-10-2019

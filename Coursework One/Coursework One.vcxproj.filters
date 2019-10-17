@@ -53,5 +53,8 @@
     <ClInclude Include="Puzzle.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BinaryTreeTemplate.h">
+      <Filter>01 - Code\00 - Template Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
