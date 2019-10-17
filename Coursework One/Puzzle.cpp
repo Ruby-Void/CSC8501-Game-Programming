@@ -14,26 +14,18 @@ Puzzle::~Puzzle() {
 }
 
 void Puzzle::createSolutions() {
-	rowSolutions = 0;
-	columnSolutions = 0;
-	reverseRowSolutions = 0;
-	reverseColumnSolutions = 0;
+	for (unsigned int row = 0; row < matrixSize; row++) {
+		if ((matrix.getElement(row, 0) < matrix.getElement(row, 1))) {// && (matrix.getElement(row, 1) < matrix.getElement(row, 2)) && (matrix.getElement(row, 2) < matrix.getElement(row, 3))) {
+			rowSolutions++;
+		}
+	}	
 }
 
 string Puzzle::printPuzzle() {
 	string puzzleFormat = "";
 	for (unsigned int row = 0; row < matrixSize; row++) {
 		for (unsigned int column = 0; column < matrixSize; column++) {
-			if (!(row == 3 && column == 3)) {
-				if (matrix.getElement(row, column) < 10) {
-					puzzleFormat.append(to_string(matrix.getElement(row, column)));
-					puzzleFormat.append("  ");
-				}
-				else {
-					puzzleFormat.append(to_string(matrix.getElement(row, column)));
-					puzzleFormat.append(" ");
-				}				
-			}						
+			puzzleFormat.append(((matrix.getElement(row, column) != 0) ? to_string(matrix.getElement(row, column)) : " ") + ((matrix.getElement(row, column) < 10) ? "  " : " "));					
 		}
 		puzzleFormat.append("\n");
 	}
@@ -41,10 +33,5 @@ string Puzzle::printPuzzle() {
 }
 
 string Puzzle::printPuzzleSolution() {
-	string puzzleFormat = printPuzzle();
-	puzzleFormat.append(("Row = " + to_string(0) + "\n"));
-	puzzleFormat.append(("Column = " + to_string(0) + "\n"));
-	puzzleFormat.append(("Reverse Row = " + to_string(0) + "\n"));
-	puzzleFormat.append(("Reverse Column = " + to_string(0) + "\n"));
-	return puzzleFormat;
+	return printPuzzle() + "Row = " + to_string(rowSolutions) + "\nColumn = " + to_string(columnSolutions) + "\nReverse Row = " + to_string(reverseRowSolutions) + "\nReverse Column = " + to_string(reverseColumnSolutions) + "\n";
 }

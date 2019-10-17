@@ -27,13 +27,13 @@
     <ClCompile Include="PuzzleFactory.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileHandler.cpp">
-      <Filter>01 - Code\02 - Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PuzzleCollection.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Puzzle.cpp">
+      <Filter>01 - Code\02 - Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,9 +44,6 @@
     <ClInclude Include="PuzzleFactory.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileHandler.h">
-      <Filter>01 - Code\01 - Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PuzzleCollection.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
@@ -55,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="BinaryTreeTemplate.h">
       <Filter>01 - Code\00 - Template Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,16 +12,14 @@ using namespace std;
 class FileHandler {
 public:
 	FileHandler();
-	~FileHandler();	
-	unsigned int getConfigurations() const { return configurations; }
-	vector<vector<unsigned int>> getInputPatterns() const { return inputPatterns; }
-	void readFile(string name);	
+	~FileHandler();		
+	vector<vector<unsigned int>> readFile(string name);
+	void writeFile(string name, string outputs);
 private:
-	int configurations;
-	const static unsigned int puzzleSize = 15;
-	vector<vector<unsigned int>> inputPatterns;
 	string filename;
-	ifstream dataFile;
-	void openFile(string name);
+	ifstream inputFile;
+	ofstream outputFile;
+	void openInputFile(string name);
+	void openOutputFile(string name);
 	void closeFile();
 };

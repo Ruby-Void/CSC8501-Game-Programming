@@ -5,6 +5,7 @@
 #pragma once
 #include "Puzzle.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -14,6 +15,9 @@ public:
 	~PuzzleCollection();
 	vector<Puzzle> getPuzzleSet() const { return puzzleSet; }
 	void addPuzzle(Puzzle puzzle);
+	void generateSolutions();
+	string printCollectionUnsolved();
+	string printCollectionSolved();
 private:
 	vector<Puzzle> puzzleSet;
 };

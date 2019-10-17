@@ -7,25 +7,27 @@
 #include <sstream>
 #include <stdexcept>
 
-FileHandler::FileHandler() :
-	configurations(0) {
+FileHandler::FileHandler() {
 }
 
 FileHandler::~FileHandler() {
 
 }
 
-void FileHandler::readFile(string name) throw (invalid_argument) {
+vector<vector<unsigned int>> FileHandler::readFile(string name) throw (invalid_argument) {
+	const unsigned int puzzleSize = 15;
+	unsigned int configurations;
+	vector<vector<unsigned int>> inputPatterns;
 	string line;
 	char nDelimiter = '\n';
 	char spaceDelimiter = ' ';
-	openFile(name);
 	try {
-		if (!dataFile.is_open()) {
+		openInputFile(name);
+		if (!inputFile.is_open()) {
 			throw invalid_argument("file not open");
 		}
 		else {
-			getline(dataFile, line, nDelimiter);
+			getline(inputFile, line, nDelimiter);
 			if (stringstream(line) >> configurations) {
 				if (configurations > 0) {
 					for (int i = 0; i < configurations; i++) {
@@ -33,13 +35,13 @@ void FileHandler::readFile(string name) throw (invalid_argument) {
 						unsigned int tempInt;
 						vector<unsigned int> tempVector;
 						while (counter < puzzleSize) {
-							getline(dataFile, line, spaceDelimiter);
+							getline(inputFile, line, spaceDelimiter);
 							if (stringstream(line) >> tempInt) {
 								tempVector.push_back(tempInt);
 								counter++;
 							}	
 							else {
-								throw invalid_argument("file format not recognised");
+								throw invalid_argument("file format incorrect");
 							}
 						}
 						inputPatterns.push_back(tempVector);
@@ -53,22 +55,48 @@ void FileHandler::readFile(string name) throw (invalid_argument) {
 		exit(1);
 	}
 	closeFile();
+	return inputPatterns;
 }
 
-void FileHandler::openFile(string name) throw (invalid_argument) {
+void FileHandler::writeFile(string name, string outputs) throw (invalid_argument) {
+	openOutputFile(name);
+
+	if (outputFile.is_open()) {
+		outputFile << outputs << endl;
+	}
+	
+	closeFile();
+}
+
+void FileHandler::openInputFile(string name) throw (invalid_argument) {
 	try {
 		filename = name;
-		dataFile.open(filename);
-		if (dataFile.fail()) {
+		inputFile.open(filename);
+		if (inputFile.fail()) {
 			throw invalid_argument("no file exists " + filename);
 		}
 	}
 	catch (const invalid_argument & iae) {
-		cout << "unable to read data: " << iae.what() << "\n";
+		cout << "unable to open file: " << iae.what() << "\n";
 		exit(1);
-	}	
+	}
+}
+
+void FileHandler::openOutputFile(string name) throw (invalid_argument) {
+	try {
+		filename = name;
+		outputFile.open(filename);
+		if (outputFile.fail()) {
+			throw invalid_argument("no file exists " + filename);
+		}
+	}
+	catch (const invalid_argument & iae) {
+		cout << "unable to open file: " << iae.what() << "\n";
+		exit(1);
+	}
 }
 
 void FileHandler::closeFile() {
-	dataFile.close();
+	inputFile.close();
+	outputFile.close();
 }
