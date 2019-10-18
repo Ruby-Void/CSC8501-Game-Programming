@@ -36,6 +36,9 @@
     <ClCompile Include="FileHandler.cpp">
       <Filter>01 - Code\02 - Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserInputHandler.cpp">
+      <Filter>01 - Code\02 - Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixTemplate.h">
@@ -54,6 +57,9 @@
       <Filter>01 - Code\00 - Template Files</Filter>
     </ClInclude>
     <ClInclude Include="FileHandler.h">
+      <Filter>01 - Code\01 - Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInputHandler.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,10 +3,9 @@
 // Student ID: 190595298
 // Date: 17-10-2019
 #include "PuzzleFactory.h"
+#include "UserInputHandler.h"
 #include <algorithm>
 #include <numeric>
-#include <sstream>
-#include <iostream>
 
 PuzzleFactory::PuzzleFactory() :
 	generation(randomDevice()) {
@@ -39,11 +38,12 @@ Puzzle PuzzleFactory::createGeneratedPattern(unsigned int start, unsigned int en
 }
 
 Puzzle PuzzleFactory::createUserPattern() {
+	UserInputHandler userInput;
 	vector<unsigned int> pattern;
 	unsigned int input;
 	for (int i = 0; i < puzzleSize; i++) {
 		do {
-			input = getIntegerInput(("Input (" + to_string(i + 1) + "): "));
+			input = userInput.getUnsignedIntInput(("Input (" + to_string(i + 1) + "): "));
 		} while (find(pattern.begin(), pattern.end(), input) != pattern.end() || input > 20);
 		pattern.push_back(input);
 	}
@@ -52,20 +52,4 @@ Puzzle PuzzleFactory::createUserPattern() {
 
 Puzzle PuzzleFactory::createFilePattern(vector<unsigned int> fileInput) {
 	return createPuzzle(fileInput);
-}
-
-unsigned int PuzzleFactory::getIntegerInput(string message) {
-	string input;
-	unsigned int numerical;
-	bool breaker = true;
-	while (breaker) {
-		cout << message;
-		getline(cin, input);
-		if (stringstream(input) >> numerical) {
-			if (numerical > 0) {
-				breaker = false;
-			}
-		}
-	}
-	return numerical;
 }

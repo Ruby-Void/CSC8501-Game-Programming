@@ -156,6 +156,7 @@
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="PuzzleCollection.cpp" />
     <ClCompile Include="PuzzleFactory.cpp" />
+    <ClCompile Include="UserInputHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTreeTemplate.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleCollection.h" />
     <ClInclude Include="PuzzleFactory.h" />
+    <ClInclude Include="UserInputHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

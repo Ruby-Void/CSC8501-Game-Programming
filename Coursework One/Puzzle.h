@@ -23,8 +23,5 @@ private:
 	const static unsigned int matrixSize = 4;
 	Matrix<unsigned int> matrix;
 	vector<unsigned int> pattern;
-	unsigned int rowSolutions = 0; 
-	unsigned int columnSolutions = 0;
-	unsigned int reverseRowSolutions = 0;
-	unsigned int reverseColumnSolutions = 0;
+	unsigned int rowSolutions = 0, columnSolutions = 0, reverseRowSolutions = 0, reverseColumnSolutions = 0;
 };
