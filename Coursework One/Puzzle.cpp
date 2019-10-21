@@ -14,11 +14,7 @@ Puzzle::~Puzzle() {
 }
 
 void Puzzle::createSolutions() {
-	for (unsigned int row = 0; row < matrixSize; row++) {
-		if ((matrix.getElement(row, 0) < matrix.getElement(row, 1))) {// && (matrix.getElement(row, 1) < matrix.getElement(row, 2)) && (matrix.getElement(row, 2) < matrix.getElement(row, 3))) {
-			rowSolutions++;
-		}
-	}	
+	
 }
 
 string Puzzle::printPuzzle() {

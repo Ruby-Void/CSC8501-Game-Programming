@@ -2,62 +2,67 @@
 // Author: Ciaran Halliburton
 // Student ID: 190595298
 // Date: 17-10-2019
+#include "MatrixTemplate.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+
+}
+
+/*
 #include "FileHandler.h"
 #include "Puzzle.h"
 #include "PuzzleCollection.h"
 #include "PuzzleFactory.h"
 #include "UserInputHandler.h"
-#include <iostream>
 
-using namespace std;
+FileHandler handler;
+PuzzleCollection collection;
+PuzzleFactory factory;
+UserInputHandler userInput;
+bool running = true;
 
-int main() {
-	FileHandler handler;
-	PuzzleCollection collection;
-	PuzzleFactory factory;
-	UserInputHandler userInput;
-	bool running = true;
+while (running) {
+	collection.addPuzzle(factory.createGeneratedPattern());
+	collection.generateSolutions();
 
-	while (running) {
-		collection.addPuzzle(factory.createGeneratedPattern());
-		collection.generateSolutions();
+	handler.writeFile(userInput.getStringInput("File Name: "), collection.printCollectionSolved());
 
-		handler.writeFile(userInput.getStringInput("File Name: "), collection.printCollectionSolved());
+	cout << collection.printCollectionSolved();
 
-		cout << collection.printCollectionSolved();
-
-		char answer = userInput.getCharInput("Continue (y/n): ");
-		if (answer == 'n') {
-			running = false;
-		}
+	if (userInput.getCharInput("Continue (y/n): ") == 'n') {
+		running = false;
 	}
 }
-
-
-
+*/
 
 /*
-	const unsigned int matrixSize = 3;
-	Matrix<unsigned int> threeByThree = Matrix<unsigned int>(matrixSize, matrixSize);
-	vector<unsigned int> pattern = { 1, 2, 3, 4, 5, 6, 7, 8, 0 };
-
-	unsigned int counter = 0;
-	for (unsigned int row = 0; row < matrixSize; row++) {
-		for (unsigned int column = 0; column < matrixSize; column++) {
-			threeByThree.setElement(row, column, pattern.at(counter));
-			counter++;
-		}
+for (unsigned int location = 0; location < matrixSize; location++) {
+	if (matrix.getElement(location, 0) + 1 == matrix.getElement(location, 1) &&
+		matrix.getElement(location, 1) + 1 == matrix.getElement(location, 2) &&
+		matrix.getElement(location, 2) + 1 == matrix.getElement(location, 3)) {
+		rowSolutions++;
 	}
 
-	for (unsigned int row = 0; row < matrixSize; row++) {
-		if (threeByThree.getElement(row, 0)) {
-
-		}		
+	if (matrix.getElement(location, 3) - 1 == matrix.getElement(location, 2) &&
+		matrix.getElement(location, 2) - 1 == matrix.getElement(location, 1) &&
+		matrix.getElement(location, 1) - 1 == matrix.getElement(location, 0)) {
+		reverseRowSolutions++;
 	}
 
-	for (unsigned int column = 0; column < matrixSize; column++) {
-		for (unsigned int row = 0; row < matrixSize; row++) {
-			
-		}
+	if (matrix.getElement(0, location) + 1 == matrix.getElement(1, location) &&
+		matrix.getElement(1, location) + 1 == matrix.getElement(2, location) &&
+		matrix.getElement(2, location) + 1 == matrix.getElement(3, location)) {
+		columnSolutions++;
 	}
+
+	if (matrix.getElement(3, location) - 1 == matrix.getElement(2, location) &&
+		matrix.getElement(2, location) - 1 == matrix.getElement(1, location) &&
+		matrix.getElement(1, location) - 1 == matrix.getElement(0, location)) {
+		reverseColumnSolutions++;
+	}
+}
 */

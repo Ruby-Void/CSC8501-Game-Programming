@@ -1,3 +1,7 @@
+// Coursework One - User Input Handler Class
+// Author: Ciaran Halliburton
+// Student ID: 190595298
+// Date: 17-10-2019
 #include "UserInputHandler.h"
 #include <sstream>
 #include <iostream>
