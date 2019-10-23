@@ -2,67 +2,69 @@
 // Author: Ciaran Halliburton
 // Student ID: 190595298
 // Date: 17-10-2019
-#include "MatrixTemplate.h"
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-int main() {
-
-}
-
-/*
 #include "FileHandler.h"
 #include "Puzzle.h"
 #include "PuzzleCollection.h"
 #include "PuzzleFactory.h"
 #include "UserInputHandler.h"
+#include <iostream>
 
-FileHandler handler;
-PuzzleCollection collection;
-PuzzleFactory factory;
-UserInputHandler userInput;
-bool running = true;
+using namespace std;
 
-while (running) {
-	collection.addPuzzle(factory.createGeneratedPattern());
-	collection.generateSolutions();
+int main() {
+	FileHandler handler;
+	PuzzleCollection collection;
+	PuzzleFactory factory;
+	UserInputHandler userInput;
+	
+	char running = 'y';
+	while (running == 'y' || running == 'Y') {
+		collection.clearCollection();
+		char generationPuzzleSet = 'y';
+		while (generationPuzzleSet == 'y' || generationPuzzleSet == 'Y') {
+			char puzzleType = ' ';
+			while (puzzleType != 'G' && puzzleType != 'I' && puzzleType != 'F' &&
+				puzzleType != 'g' && puzzleType != 'i' && puzzleType != 'f') {
+				puzzleType = userInput.getCharInput("Select which mode to create puzzle patterns with.\nGenereated Puzzles = g/G\nUser Input Puzzle = i/I\nFile Input Puzzles = f/F\nCreation Type : ");
+			}
+			if (puzzleType == 'G' || puzzleType == 'g') {
+				unsigned int itterations = userInput.getUnsignedIntInput("Please specify how many generations: ");
+				for (int i = 0; i < itterations; i++) {
+					collection.addPuzzle(factory.createGeneratedPattern());
+				}
+			}
+			else if (puzzleType == 'I' || puzzleType == 'i') {
+				collection.addPuzzle(factory.createUserPattern(userInput.getUnsignedIntInput("Please specify puzzle size (e.g. 4x4 = 4): ")));
+			}
+			else {
+				string filename = userInput.getStringInput("Please specify file name: ");
+				for (auto puzzle : handler.readFile(filename)) {
+					collection.addPuzzle(factory.createFilePattern(puzzle));
+				}
+			}
+			do {
+				generationPuzzleSet = userInput.getCharInput("Create new puzzle pattern? (y/Y/n/N): ");
+			} while (generationPuzzleSet != 'y' && generationPuzzleSet != 'Y' && generationPuzzleSet != 'n' && generationPuzzleSet != 'N');
+		}		
 
-	handler.writeFile(userInput.getStringInput("File Name: "), collection.printCollectionSolved());
+		collection.generateStateSolutions();
+		for (auto value : userInput.getSequenceInput("Please input a partial patterns (2, 3, 4) you wish to solve (use spaces to define different numbers) : \n")) {
+			collection.generateSolutions(value);
+		}
 
-	cout << collection.printCollectionSolved();
+		char printToConsole = ' ';
+		do {
+			printToConsole = userInput.getCharInput("Print to console? (y/Y/n/N): ");
+		} while (printToConsole != 'y' && printToConsole != 'Y' && printToConsole != 'n' && printToConsole != 'N');
 
-	if (userInput.getCharInput("Continue (y/n): ") == 'n') {
-		running = false;
-	}
+		if (printToConsole == 'y' || printToConsole == 'Y') {
+			cout << "\nOutput:\n\n" << collection.printCollectionSolved();
+		}
+
+		handler.writeFile(userInput.getStringInput("Please specify output file name: "), collection.printCollectionSolved());
+
+		do {
+			running = userInput.getCharInput("Continue? (y/Y/n/N): ");
+		} while (running != 'y' && running != 'Y' && running != 'n' && running != 'N');
+	}	
 }
-*/
-
-/*
-for (unsigned int location = 0; location < matrixSize; location++) {
-	if (matrix.getElement(location, 0) + 1 == matrix.getElement(location, 1) &&
-		matrix.getElement(location, 1) + 1 == matrix.getElement(location, 2) &&
-		matrix.getElement(location, 2) + 1 == matrix.getElement(location, 3)) {
-		rowSolutions++;
-	}
-
-	if (matrix.getElement(location, 3) - 1 == matrix.getElement(location, 2) &&
-		matrix.getElement(location, 2) - 1 == matrix.getElement(location, 1) &&
-		matrix.getElement(location, 1) - 1 == matrix.getElement(location, 0)) {
-		reverseRowSolutions++;
-	}
-
-	if (matrix.getElement(0, location) + 1 == matrix.getElement(1, location) &&
-		matrix.getElement(1, location) + 1 == matrix.getElement(2, location) &&
-		matrix.getElement(2, location) + 1 == matrix.getElement(3, location)) {
-		columnSolutions++;
-	}
-
-	if (matrix.getElement(3, location) - 1 == matrix.getElement(2, location) &&
-		matrix.getElement(2, location) - 1 == matrix.getElement(1, location) &&
-		matrix.getElement(1, location) - 1 == matrix.getElement(0, location)) {
-		reverseColumnSolutions++;
-	}
-}
-*/

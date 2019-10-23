@@ -1,2 +1,5 @@
 ﻿  Coursework One.cpp
-  Coursework One.vcxproj -> H:\C++\Coursework-One\Coursework-One\x64\Debug\Coursework One.exe
+  PuzzleCollection.cpp
+  Generating Code...
+H:\C++\Coursework-One\Coursework-One\Coursework One\Coursework One.cpp(32,23): warning C4018: '<': signed/unsigned mismatch
+LINK : fatal error LNK1168: cannot open H:\C++\Coursework-One\Coursework-One\x64\Debug\Coursework One.exe for writing

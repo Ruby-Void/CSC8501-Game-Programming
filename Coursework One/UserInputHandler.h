@@ -4,6 +4,7 @@
 // Date: 17-10-2019
 #pragma once
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -12,6 +13,8 @@ public:
 	UserInputHandler();
 	~UserInputHandler();
 	unsigned int getUnsignedIntInput(string message);
+	unsigned long long getUnsignedLongLongInput(string message);
 	char getCharInput(string message);
 	string getStringInput(string message);
+	vector<unsigned int> getSequenceInput(string message);
 };

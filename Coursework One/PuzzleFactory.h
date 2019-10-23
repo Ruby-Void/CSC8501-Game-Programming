@@ -14,12 +14,11 @@ class PuzzleFactory {
 public:
 	PuzzleFactory();
 	~PuzzleFactory();	
-	Puzzle createGeneratedPattern(unsigned int start = defaultStart, unsigned int end = defaultEnd);
-	Puzzle createUserPattern();
+	Puzzle createGeneratedPattern(unsigned int start = defaultStart, unsigned int end = defaultEnd, unsigned int size = defaultSize);
+	Puzzle createUserPattern(unsigned int size = defaultSize);
 	Puzzle createFilePattern(vector<unsigned int> fileInput);
 private:
-	const static unsigned int puzzleSize = 15, defaultStart = 1, defaultEnd = 20;
+	const static unsigned int defaultStart = 1, defaultEnd = 15, defaultSize = 4;
 	random_device randomDevice;
 	mt19937 generation;
-	Puzzle createPuzzle(vector<unsigned int> pattern);
 };

@@ -15,41 +15,29 @@ PuzzleFactory::~PuzzleFactory() {
 
 }
 
-Puzzle PuzzleFactory::createPuzzle(vector<unsigned int> pattern) {
-	Puzzle tempPuzzle = Puzzle();
-	unsigned int counter = 0;
-	for (int row = 0; row < tempPuzzle.getMatrixSize(); row++) {
-		for (int column = 0; column < tempPuzzle.getMatrixSize(); column++) {
-			tempPuzzle.getPuzzle().setElement(row, column, (row == 3 && column == 3) ? 0 : pattern.at(counter));
-			counter++;
-		}
-	}
-	tempPuzzle.setPattern(pattern);
-	return tempPuzzle;
-}
-
-Puzzle PuzzleFactory::createGeneratedPattern(unsigned int start, unsigned int end) {
-	unsigned int startPoint = (start > 0) ? start : defaultStart, endpoint = (end > 14) ? end : defaultEnd;
+Puzzle PuzzleFactory::createGeneratedPattern(unsigned int start, unsigned int end, unsigned int size) {
+	unsigned int endpoint = (end >= (size * size - 1)) ? end : (size * size - 1);
+	unsigned int startPoint = (start > 0 && endpoint - start < (size * size - 1)) ? start : 1;
 	vector<unsigned int> pattern(endpoint);
 	iota(pattern.begin(), pattern.end(), startPoint);
 	shuffle(pattern.begin(), pattern.end(), generation);
-	pattern.erase(pattern.begin() + puzzleSize, pattern.end());
-	return createPuzzle(pattern);
+	pattern.erase(pattern.begin() + size * size - 1, pattern.end());
+	return Puzzle(pattern);
 }
 
-Puzzle PuzzleFactory::createUserPattern() {
+Puzzle PuzzleFactory::createUserPattern(unsigned int size) {
 	UserInputHandler userInput;
 	vector<unsigned int> pattern;
 	unsigned int input;
-	for (int i = 0; i < puzzleSize; i++) {
+	for (int i = 0; i < (size * size - 1); i++) {
 		do {
 			input = userInput.getUnsignedIntInput(("Input (" + to_string(i + 1) + "): "));
 		} while (find(pattern.begin(), pattern.end(), input) != pattern.end() || input > 20);
 		pattern.push_back(input);
 	}
-	return createPuzzle(pattern);
+	return Puzzle(pattern);
 }
 
 Puzzle PuzzleFactory::createFilePattern(vector<unsigned int> fileInput) {
-	return createPuzzle(fileInput);
+	return Puzzle(fileInput);
 }

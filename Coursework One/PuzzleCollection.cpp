@@ -15,9 +15,22 @@ void PuzzleCollection::addPuzzle(Puzzle puzzle) {
 	puzzleSet.push_back(puzzle);
 }
 
-void PuzzleCollection::generateSolutions() {
+void PuzzleCollection::clearCollection() {
+	puzzleSet.clear();
+}
+
+void PuzzleCollection::generateStateSolutions() {
 	for (Puzzle& puzzle : puzzleSet) {
-		puzzle.createSolutions();
+		puzzle.createStateSolution();
+	}
+}
+
+void PuzzleCollection::generateSolutions(unsigned int partial) {
+	for (Puzzle& puzzle : puzzleSet) {
+		puzzle.createStateSolution();
+		if (puzzle.getMatrixSize() <= partial) {
+			puzzle.setGivenSolutions(partial, puzzle.createSolution(partial));
+		}		
 	}
 }
 

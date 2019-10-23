@@ -3,25 +3,26 @@
 // Student ID: 190595298
 // Date: 17-10-2019
 #pragma once
-#include "MatrixTemplate.h"
+#include <string>
 #include <vector>
 
 using namespace std;
 
 class Puzzle {
 public:
-	Puzzle();
+	Puzzle(vector<unsigned int> newPattern);
 	~Puzzle();
-	Matrix<unsigned int>& getPuzzle() { return matrix; }
-	vector<unsigned int> getPattern() { return pattern; }
 	unsigned int getMatrixSize() const { return matrixSize; }
-	void setPattern(vector<unsigned int> newPattern) { pattern = newPattern; }
-	void createSolutions();
+	void createStateSolution();
+	unsigned long long createSolution(unsigned int partials);
 	string printPuzzle();
 	string printPuzzleSolution();
+	void setGivenSolutions(unsigned int partial, unsigned long long value);
 private:
-	const static unsigned int matrixSize = 4;
-	Matrix<unsigned int> matrix;
-	vector<unsigned int> pattern;
-	unsigned int rowSolutions = 0, columnSolutions = 0, reverseRowSolutions = 0, reverseColumnSolutions = 0;
+	const static unsigned int defaultMatrix = 1, defaultPuzzleSize = 15;
+	unsigned int twoSolutions = 0, threeSolutions = 0, fourSolutions = 0;
+	unsigned int twoStateSolutions = 0, threeStateSolutions = 0, fourStateSolutions = 0;
+	unsigned int matrixSize, puzzleSize;
+	vector<unsigned int> pattern, orderedPattern;
+	unsigned int factorial(unsigned int value);
 };

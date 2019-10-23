@@ -159,9 +159,7 @@
     <ClCompile Include="UserInputHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTreeTemplate.h" />
     <ClInclude Include="FileHandler.h" />
-    <ClInclude Include="MatrixTemplate.h" />
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleCollection.h" />
     <ClInclude Include="PuzzleFactory.h" />

@@ -15,7 +15,9 @@ public:
 	~PuzzleCollection();
 	vector<Puzzle> getPuzzleSet() const { return puzzleSet; }
 	void addPuzzle(Puzzle puzzle);
-	void generateSolutions();
+	void clearCollection();
+	void generateStateSolutions();
+	void generateSolutions(unsigned int partial);
 	string printCollectionUnsolved();
 	string printCollectionSolved();
 private:
