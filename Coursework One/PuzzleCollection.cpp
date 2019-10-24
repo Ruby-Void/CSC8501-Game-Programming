@@ -1,7 +1,7 @@
 // Coursework One - Puzzle Collection Class
 // Author: Ciaran Halliburton
 // Student ID: 190595298
-// Date: 17-10-2019
+// Last Edited: 17-10-2019
 #include "PuzzleCollection.h"
 
 PuzzleCollection::PuzzleCollection() {
@@ -19,17 +19,11 @@ void PuzzleCollection::clearCollection() {
 	puzzleSet.clear();
 }
 
-void PuzzleCollection::generateStateSolutions() {
-	for (Puzzle& puzzle : puzzleSet) {
-		puzzle.createStateSolution();
-	}
-}
-
 void PuzzleCollection::generateSolutions(unsigned int partial) {
 	for (Puzzle& puzzle : puzzleSet) {
-		puzzle.createStateSolution();
-		if (puzzle.getMatrixSize() <= partial) {
-			puzzle.setGivenSolutions(partial, puzzle.createSolution(partial));
+		if (partial <= puzzle.getMatrixSize()) {
+			puzzle.setStateSolutions(partial, puzzle.createStateSolution(partial));
+			puzzle.setSolutions(partial, puzzle.createSolution(partial));
 		}		
 	}
 }

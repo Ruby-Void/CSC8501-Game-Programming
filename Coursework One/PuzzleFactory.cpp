@@ -16,12 +16,12 @@ PuzzleFactory::~PuzzleFactory() {
 }
 
 Puzzle PuzzleFactory::createGeneratedPattern(unsigned int start, unsigned int end, unsigned int size) {
-	unsigned int endpoint = (end >= (size * size - 1)) ? end : (size * size - 1);
+	unsigned int endpoint = (end >= (size * size - 1)) ? end : defaultEnd;
 	unsigned int startPoint = (start > 0 && endpoint - start < (size * size - 1)) ? start : 1;
 	vector<unsigned int> pattern(endpoint);
 	iota(pattern.begin(), pattern.end(), startPoint);
 	shuffle(pattern.begin(), pattern.end(), generation);
-	pattern.erase(pattern.begin() + size * size - 1, pattern.end());
+	pattern.erase(pattern.begin() + (size * size - 1), pattern.end());	
 	return Puzzle(pattern);
 }
 
@@ -32,7 +32,7 @@ Puzzle PuzzleFactory::createUserPattern(unsigned int size) {
 	for (int i = 0; i < (size * size - 1); i++) {
 		do {
 			input = userInput.getUnsignedIntInput(("Input (" + to_string(i + 1) + "): "));
-		} while (find(pattern.begin(), pattern.end(), input) != pattern.end() || input > 20);
+		} while (find(pattern.begin(), pattern.end(), input) != pattern.end() || input > (size * size - 1) + 5);
 		pattern.push_back(input);
 	}
 	return Puzzle(pattern);

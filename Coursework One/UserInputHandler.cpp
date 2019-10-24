@@ -50,12 +50,24 @@ char UserInputHandler::getCharInput(string message) {
 	return character;
 }
 
-string UserInputHandler::getStringInput(string message) {
+string UserInputHandler::getFilenameInput(string message) {
 	string input;
-	cout << message;
-	getline(cin, input);
+	const int invalidCharSize = 9;
+	string invalidChars[9] = { "<", ">", ":", "\"", "/", "\\", "|", "?", "*" };
+	bool found = false;
+	int counter = 0;
+	do  {
+		input = getStringInput(message);	
+		while (counter < invalidCharSize && !found) {
+			if (input.find(invalidChars[counter]) != string::npos) {
+				found = true;
+			}
+			counter++;
+		}
+	} while (counter < invalidCharSize);
 	return input;
 }
+
 
 vector<unsigned int> UserInputHandler::getSequenceInput(string message) {
 	vector<unsigned int> returnVector;
@@ -73,4 +85,11 @@ vector<unsigned int> UserInputHandler::getSequenceInput(string message) {
 		}
 	}
 	return returnVector;
+}
+
+string UserInputHandler::getStringInput(string message) {
+	string input;
+	cout << message;
+	getline(cin, input);
+	return input;
 }

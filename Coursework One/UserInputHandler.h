@@ -14,7 +14,9 @@ public:
 	~UserInputHandler();
 	unsigned int getUnsignedIntInput(string message);
 	unsigned long long getUnsignedLongLongInput(string message);
-	char getCharInput(string message);
-	string getStringInput(string message);
+	char getCharInput(string message);	
+	string getFilenameInput(string message);
 	vector<unsigned int> getSequenceInput(string message);
+private:
+	string getStringInput(string message);
 };

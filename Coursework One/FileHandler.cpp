@@ -16,8 +16,8 @@ FileHandler::~FileHandler() {
 
 vector<vector<unsigned int>> FileHandler::readFile(string name) throw (invalid_argument) {
 	vector<vector<unsigned int>> returnVector;
-	char nDelimiter = '\n';
-	char spaceDelimiter = ' ';
+	const char nDelimiter = '\n';
+	const char spaceDelimiter = ' ';
 
 	try {
 		openInputFile(name);
@@ -32,17 +32,19 @@ vector<vector<unsigned int>> FileHandler::readFile(string name) throw (invalid_a
 			if (configurations > 0) {
 				int counter = 0;
 				vector<unsigned int> tempVector;
-				string row;
-				while (getline(inputFile, row, nDelimiter) && counter < configurations) {
+				string row = "";
+				while (counter < configurations) {					
+					getline(inputFile, row);
 					if (row != "") {
 						string field;
-						unsigned long long value;
+						unsigned int value;
 						stringstream rowContainer = stringstream(row);
 						while (getline(rowContainer, field, spaceDelimiter)) {
 							if (stringstream(field) >> value) {
 								tempVector.push_back(value);
 							}								
 						}
+						row = "";
 					}
 					else {
 						returnVector.push_back(tempVector);
@@ -81,8 +83,7 @@ void FileHandler::openInputFile(string name) throw (invalid_argument) {
 		}
 	}
 	catch (const invalid_argument & iae) {
-		cout << "unable to open file: " << iae.what() << "\n";
-		exit(1);
+		cout << "Unable to open file: " << iae.what() << "\n";
 	}
 }
 
@@ -95,8 +96,7 @@ void FileHandler::openOutputFile(string name) throw (invalid_argument) {
 		}
 	}
 	catch (const invalid_argument & iae) {
-		cout << "unable to open file: " << iae.what() << "\n";
-		exit(1);
+		cout << "Unable to open file: " << iae.what() << "\n";
 	}
 }
 

@@ -56,5 +56,8 @@
     <ClInclude Include="UserInputHandler.h">
       <Filter>01 - Code\01 - Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BigInt.h">
+      <Filter>01 - Code\01 - Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

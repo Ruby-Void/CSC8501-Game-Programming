@@ -37,8 +37,7 @@ int main() {
 				collection.addPuzzle(factory.createUserPattern(userInput.getUnsignedIntInput("Please specify puzzle size (e.g. 4x4 = 4): ")));
 			}
 			else {
-				string filename = userInput.getStringInput("Please specify file name: ");
-				for (auto puzzle : handler.readFile(filename)) {
+				for (auto puzzle : handler.readFile(userInput.getFilenameInput("Please specify file name: "))) {
 					collection.addPuzzle(factory.createFilePattern(puzzle));
 				}
 			}
@@ -47,7 +46,6 @@ int main() {
 			} while (generationPuzzleSet != 'y' && generationPuzzleSet != 'Y' && generationPuzzleSet != 'n' && generationPuzzleSet != 'N');
 		}		
 
-		collection.generateStateSolutions();
 		for (auto value : userInput.getSequenceInput("Please input a partial patterns (2, 3, 4) you wish to solve (use spaces to define different numbers) : \n")) {
 			collection.generateSolutions(value);
 		}
@@ -61,7 +59,7 @@ int main() {
 			cout << "\nOutput:\n\n" << collection.printCollectionSolved();
 		}
 
-		handler.writeFile(userInput.getStringInput("Please specify output file name: "), collection.printCollectionSolved());
+		handler.writeFile(userInput.getFilenameInput("Please specify output file name: "), collection.printCollectionSolved());
 
 		do {
 			running = userInput.getCharInput("Continue? (y/Y/n/N): ");

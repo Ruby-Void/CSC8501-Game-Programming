@@ -4,6 +4,7 @@
 // Date: 17-10-2019
 #include "Puzzle.h"
 #include <algorithm>
+#include <sstream>
 
 Puzzle::Puzzle(vector<unsigned int> newPattern) :
 	matrixSize(unsigned int(sqrt(newPattern.size() + 1))), 
@@ -15,68 +16,58 @@ Puzzle::~Puzzle() {
 	
 }
 
-void Puzzle::createStateSolution() {
-	// Partial 2 Row
-	for (int i = 0; i < (matrixSize - 1); i++) {
-		if (pattern.at(i) + 1 == pattern.at(i + 1)) {
-			twoStateSolutions++;
-		}
-		if (pattern.at(i + matrixSize) + 1 == pattern.at(i + matrixSize + 1)) {
-			twoStateSolutions++;
-		}
-		if (pattern.at(i + matrixSize * 2) + 1 == pattern.at(i + matrixSize * 2 + 1)) {
-			twoStateSolutions++;
-		}	
-	}
-
-	// Partial 3 Row
-	for (int i = 0; i < (matrixSize - 2); i++) {
-		if (pattern.at(i) + 1 == pattern.at(i + 1) && pattern.at(i + 1) + 1 == pattern.at(i + 2)) {
-			threeStateSolutions++;
-		}
-		if (pattern.at(i + matrixSize) + 1 == pattern.at(i + matrixSize + 1) && pattern.at(i + matrixSize + 1) + 1 == pattern.at(i + matrixSize + 2)) {
-			threeStateSolutions++;
-		}
-		if (pattern.at(i + matrixSize * 2) + 1 == pattern.at(i + matrixSize * 2 + 1) && pattern.at(i + matrixSize * 2 + 1) + 1 == pattern.at(i + matrixSize * 2 + 2)) {
-			threeStateSolutions++;
+unsigned int Puzzle::createStateSolution(int partials) {
+	int solution = 0;
+	for (int column = 0; column < matrixSize; column++) { //looping coloumns
+		for (int row = 0; row <= matrixSize - partials; row++) { //looping Rows
+			int itterator = row * matrixSize + column;
+			bool forward = true, reverse = true;
+			for (int i = 1; i < partials; i++) {
+				if (itterator + matrixSize * i < puzzleSize) {
+					forward = (pattern.at(itterator) + i != pattern.at(itterator + matrixSize * i)) ? false : true;
+					reverse = (pattern.at(itterator) != pattern.at(itterator + matrixSize * i) + i) ? false : true;
+				}
+				else {
+					forward = reverse = false;
+				}
+			}
+			if (forward) {
+				solution++;
+			}
+			if (reverse) {
+				solution++;
+			}
 		}
 	}
 
-	// Partial 4 Row
-	for (int i = 0; i < matrixSize - 1; i++) {
-		if (pattern.at(i * matrixSize) + 1 == pattern.at(i * matrixSize + 1) && pattern.at(i * matrixSize + 1) + 1 == pattern.at(i * matrixSize + 2) && pattern.at(i * matrixSize + 2) + 1 == pattern.at(i * matrixSize + 3)) {
-			fourStateSolutions++;
+	for (int row = 0; row < matrixSize; row++) {
+		for (int column = 0; column <= matrixSize - partials; column++) {
+			int itterator = row * matrixSize + column;
+			bool forward = true, reverse = true;
+			for (int i = 1; i < partials; i++) {
+				if (itterator + i < puzzleSize) {
+					forward = (pattern.at(itterator) + i != pattern.at(itterator + i)) ? false : true;
+					reverse = (pattern.at(itterator) != pattern.at(itterator + i) + i) ? false : true;
+				}
+				else {
+					forward = reverse = false;
+				}
+			}
+			if (forward) {
+				solution++;
+			}
+			if (reverse) {
+				solution++;
+			}
 		}
 	}
+
+	return solution;
 }
 
-/*
-for (unsigned int location = 0; location < matrixSize; location++) {
-	if (matrix.getElement(location, 0) + 1 == matrix.getElement(location, 1) &&
-		matrix.getElement(location, 1) + 1 == matrix.getElement(location, 2) &&
-		matrix.getElement(location, 2) + 1 == matrix.getElement(location, 3)) {
-		rowSolutions++;
-	}
-	if (matrix.getElement(location, 3) - 1 == matrix.getElement(location, 2) &&
-		matrix.getElement(location, 2) - 1 == matrix.getElement(location, 1) &&
-		matrix.getElement(location, 1) - 1 == matrix.getElement(location, 0)) {
-		reverseRowSolutions++;
-	}
-	if (matrix.getElement(0, location) + 1 == matrix.getElement(1, location) &&
-		matrix.getElement(1, location) + 1 == matrix.getElement(2, location) &&
-		matrix.getElement(2, location) + 1 == matrix.getElement(3, location)) {
-		columnSolutions++;
-	}
-	if (matrix.getElement(3, location) - 1 == matrix.getElement(2, location) &&
-		matrix.getElement(2, location) - 1 == matrix.getElement(1, location) &&
-		matrix.getElement(1, location) - 1 == matrix.getElement(0, location)) {
-		reverseColumnSolutions++;
-	}
-}
-*/
-
-unsigned long long Puzzle::createSolution(unsigned int partials) {
-	unsigned long long solution = 0;
+bigint Puzzle::createSolution(unsigned int partials) {
+	bigint solution = 0;
+	#pragma loop(hint_parallel(6))
 	for (unsigned int i = 0; i < puzzleSize - (partials - 1); i++) {
 		if (orderedPattern.at(i) + (partials - 1) == orderedPattern.at(i + partials - 1)) {
 			solution += (((matrixSize - partials + 1) * (matrixSize - 1)) + (matrixSize - partials)) * (factorial(puzzleSize - partials) / 2);
@@ -101,30 +92,50 @@ string Puzzle::printPuzzle() {
 }
 
 string Puzzle::printPuzzleSolution() {
-	return printPuzzle() + "Row = " + to_string(fourSolutions) +
-		"\nColumn = " + to_string(fourSolutions) + 
-		"\nReverse Row = " + to_string(fourSolutions) + 
-		"\nReverse Column = " + to_string(fourSolutions) + 
+	stringstream number;
+	number << fourSolutions;
+	string solutionFormat = printPuzzle() + "\nRow = " + number.str() +
+		"\nColumn = " + number.str() +
+		"\nReverse Row = " + number.str() +
+		"\nReverse Column = " + number.str() +
 		"\n(total for row & column, including reverse, in this configuration)" +
 		"\n2 = " + to_string(twoStateSolutions) +
 		"\n3 = " + to_string(threeStateSolutions) +
 		"\n4 = " + to_string(fourStateSolutions) +
-		"\n(total for row and column, including reverse, for all valid turns)" +
-		"\n2 = " + to_string(twoSolutions) + 
-		"\n3 = " + to_string(threeSolutions) + 
-		"\n4 = " + to_string(fourSolutions) + 
-		"\n";
+		"\n(total for row and column, including reverse, for all valid turns)";
+	number.clear();
+	number << twoSolutions * 4;
+	solutionFormat.append("\n2 = " + number.str());
+	number.clear();
+	number << threeSolutions * 4;
+	solutionFormat.append("\n3 = " + number.str());
+	number.clear();
+	number << fourSolutions * 4;
+	solutionFormat.append("\n4 = " + number.str() + "\n");
+	return solutionFormat;
 }
 
-void Puzzle::setGivenSolutions(unsigned int partial, unsigned long long value) {
+void Puzzle::setStateSolutions(unsigned int partial, unsigned int value){
 	if (partial == 2) {
-		twoSolutions = value;
+		twoStateSolutions = value;
 	}
 	else if (partial == 3) {
-		threeSolutions = value;
+		threeStateSolutions = value;
 	}
 	else if (partial == 4) {
-		fourSolutions = value;
+		fourStateSolutions = value;
+	}
+}
+
+void Puzzle::setSolutions(unsigned int partial, bigint value) {
+	if (partial == 2) {
+		twoSolutions = bigint(value);
+	}
+	else if (partial == 3) {
+		threeSolutions = bigint(value);
+	}
+	else if (partial == 4) {
+		fourSolutions = bigint(value);
 	}
 }
 
