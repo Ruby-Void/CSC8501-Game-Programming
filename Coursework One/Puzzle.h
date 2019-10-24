@@ -22,9 +22,9 @@ public:
 	void setSolutions(unsigned int partial, bigint value);
 private:
 	const static unsigned int defaultMatrix = 1, defaultPuzzleSize = 15;
-	bigint twoSolutions = 0, threeSolutions = 0, fourSolutions = 0;
+	bigint twoSolutions, threeSolutions, fourSolutions;
 	unsigned int twoStateSolutions = 0, threeStateSolutions = 0, fourStateSolutions = 0;
 	unsigned int matrixSize, puzzleSize;
 	vector<unsigned int> pattern, orderedPattern;
-	unsigned int factorial(unsigned int value);
+	bigint factorial(unsigned int value);
 };

@@ -5,6 +5,7 @@
 #include "Puzzle.h"
 #include <algorithm>
 #include <sstream>
+#include <iostream>
 
 Puzzle::Puzzle(vector<unsigned int> newPattern) :
 	matrixSize(unsigned int(sqrt(newPattern.size() + 1))), 
@@ -66,13 +67,14 @@ unsigned int Puzzle::createStateSolution(int partials) {
 }
 
 bigint Puzzle::createSolution(unsigned int partials) {
-	bigint solution = 0;
+	bigint solution;
 	#pragma loop(hint_parallel(6))
 	for (unsigned int i = 0; i < puzzleSize - (partials - 1); i++) {
 		if (orderedPattern.at(i) + (partials - 1) == orderedPattern.at(i + partials - 1)) {
-			solution += (((matrixSize - partials + 1) * (matrixSize - 1)) + (matrixSize - partials)) * (factorial(puzzleSize - partials) / 2);
+			solution += (factorial(puzzleSize - partials) * (((matrixSize - partials + 1) * (matrixSize - 1)) + (matrixSize - partials)) / 2);
 		}
 	}
+	cout << solution << endl;
 	return solution;
 }
 
@@ -103,14 +105,14 @@ string Puzzle::printPuzzleSolution() {
 		"\n3 = " + to_string(threeStateSolutions) +
 		"\n4 = " + to_string(fourStateSolutions) +
 		"\n(total for row and column, including reverse, for all valid turns)";
-	number.clear();
-	number << twoSolutions * 4;
+	number.str(string());
+	number << twoSolutions;
 	solutionFormat.append("\n2 = " + number.str());
-	number.clear();
-	number << threeSolutions * 4;
+	number.str(string());
+	number << threeSolutions;
 	solutionFormat.append("\n3 = " + number.str());
-	number.clear();
-	number << fourSolutions * 4;
+	number.str(string());
+	number << fourSolutions;
 	solutionFormat.append("\n4 = " + number.str() + "\n");
 	return solutionFormat;
 }
@@ -131,16 +133,18 @@ void Puzzle::setSolutions(unsigned int partial, bigint value) {
 	if (partial == 2) {
 		twoSolutions = bigint(value);
 	}
-	else if (partial == 3) {
+
+	if (partial == 3) {
 		threeSolutions = bigint(value);
 	}
-	else if (partial == 4) {
+
+	if (partial == 4) {
 		fourSolutions = bigint(value);
 	}
 }
 
-unsigned int Puzzle::factorial(unsigned int value) {
-	unsigned int returnValue = 1;
+bigint Puzzle::factorial(unsigned int value) {
+	bigint returnValue = 1;
 	for (int i = 1; i <= value; i++) {
 		returnValue *= i;
 	}
