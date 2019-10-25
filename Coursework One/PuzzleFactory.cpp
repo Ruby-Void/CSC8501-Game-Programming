@@ -15,11 +15,10 @@ PuzzleFactory::~PuzzleFactory() {
 
 }
 
-Puzzle PuzzleFactory::createGeneratedPattern(unsigned int start, unsigned int end, unsigned int size) {
-	unsigned int endpoint = (end >= (size * size - 1)) ? end : defaultEnd;
-	unsigned int startPoint = (start > 0 && endpoint - start < (size * size - 1)) ? start : 1;
+Puzzle PuzzleFactory::createGeneratedPattern(unsigned int size) {
+	unsigned int endpoint = (size * size - 1) + 5;
 	vector<unsigned int> pattern(endpoint);
-	iota(pattern.begin(), pattern.end(), startPoint);
+	iota(pattern.begin(), pattern.end(), defaultStart);
 	shuffle(pattern.begin(), pattern.end(), generation);
 	pattern.erase(pattern.begin() + (size * size - 1), pattern.end());	
 	return Puzzle(pattern);

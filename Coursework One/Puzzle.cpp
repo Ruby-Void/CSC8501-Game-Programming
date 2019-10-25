@@ -9,7 +9,7 @@
 
 Puzzle::Puzzle(vector<unsigned int> newPattern) :
 	matrixSize(unsigned int(sqrt(newPattern.size() + 1))), 
-	puzzleSize(newPattern.size()), pattern(newPattern), orderedPattern(newPattern) {
+	tileSet(newPattern.size()), pattern(newPattern), orderedPattern(newPattern) {
 	sort(orderedPattern.begin(), orderedPattern.end());
 }
 
@@ -19,14 +19,18 @@ Puzzle::~Puzzle() {
 
 unsigned int Puzzle::createStateSolution(int partials) {
 	int solution = 0;
-	for (int column = 0; column < matrixSize; column++) { //looping coloumns
-		for (int row = 0; row <= matrixSize - partials; row++) { //looping Rows
+	for (int column = 0; column < matrixSize; column++) {
+		for (int row = 0; row <= matrixSize - partials; row++) {
 			int itterator = row * matrixSize + column;
 			bool forward = true, reverse = true;
 			for (int i = 1; i < partials; i++) {
-				if (itterator + matrixSize * i < puzzleSize) {
-					forward = (pattern.at(itterator) + i != pattern.at(itterator + matrixSize * i)) ? false : true;
-					reverse = (pattern.at(itterator) != pattern.at(itterator + matrixSize * i) + i) ? false : true;
+				if (itterator + matrixSize * i < tileSet) {
+					if (pattern.at(itterator) + i != pattern.at(itterator + matrixSize * i)) {
+						forward = false;
+					}
+					if (pattern.at(itterator) != pattern.at(itterator + matrixSize * i) + i) {
+						reverse = false;
+					}
 				}
 				else {
 					forward = reverse = false;
@@ -46,9 +50,13 @@ unsigned int Puzzle::createStateSolution(int partials) {
 			int itterator = row * matrixSize + column;
 			bool forward = true, reverse = true;
 			for (int i = 1; i < partials; i++) {
-				if (itterator + i < puzzleSize) {
-					forward = (pattern.at(itterator) + i != pattern.at(itterator + i)) ? false : true;
-					reverse = (pattern.at(itterator) != pattern.at(itterator + i) + i) ? false : true;
+				if (itterator + i < tileSet) {
+					if (pattern.at(itterator) + i != pattern.at(itterator + i)) {
+						forward = false;
+					}
+					if (pattern.at(itterator) != pattern.at(itterator + i) + i) {
+						reverse = false;
+					}
 				}
 				else {
 					forward = reverse = false;
@@ -62,58 +70,116 @@ unsigned int Puzzle::createStateSolution(int partials) {
 			}
 		}
 	}
-
 	return solution;
 }
 
 bigint Puzzle::createSolution(unsigned int partials) {
 	bigint solution;
 	#pragma loop(hint_parallel(6))
-	for (unsigned int i = 0; i < puzzleSize - (partials - 1); i++) {
+	for (unsigned int i = 0; i < tileSet - (partials - 1); i++) {
 		if (orderedPattern.at(i) + (partials - 1) == orderedPattern.at(i + partials - 1)) {
-			solution += (factorial(puzzleSize - partials) * (((matrixSize - partials + 1) * (matrixSize - 1)) + (matrixSize - partials)) / 2);
+			solution += (factorial(tileSet - partials) * (((matrixSize - partials + 1) * (matrixSize - 1)) + (matrixSize - partials)) / 2);
 		}
 	}
-	cout << solution << endl;
 	return solution;
 }
 
 string Puzzle::printPuzzle() {
 	string puzzleFormat = "";
 	unsigned int counter = 0;
-	for (unsigned int row = 0; row < matrixSize; row++) {
-		for (unsigned int column = 0; column < matrixSize; column++) {
-			if (counter < puzzleSize) {
+	for (unsigned int i = 0; i < matrixSize; i++) {
+		for (unsigned int j = 0; j < matrixSize; j++) {
+			if (counter < tileSet) {
 				puzzleFormat.append(((pattern.at(counter) != 0) ? to_string(pattern.at(counter)) : " ") + ((pattern.at(counter) < 10) ? "  " : " "));
 			}
 			counter++;
 		}
-		puzzleFormat.append("\n");
+		if (i < matrixSize - 1) {
+			puzzleFormat.append("\n");
+		}		
 	}
 	return puzzleFormat;
 }
 
-string Puzzle::printPuzzleSolution() {
-	stringstream number;
-	number << fourSolutions;
+string Puzzle::printPuzzleSolution(vector<unsigned int> sequence) {
+	stringstream number;	
+	if (matrixSize == 3) { 
+		if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
+			number << threeSolutions;
+		}
+		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
+			number << twoSolutions;
+		}
+		else {
+			number << 0;
+		}
+	}
+	else if (matrixSize == 4) {
+		if (find(sequence.begin(), sequence.end(), 4) != pattern.end()) {
+			number << fourSolutions;
+		}
+		else if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
+			number << threeSolutions;
+		}
+		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
+			number << twoSolutions;
+		}
+		else {
+			number << 0;
+		}
+	}
+	else if (matrixSize > 4) {
+		if (find(sequence.begin(), sequence.end(), 4) != pattern.end()) {
+			number << fourSolutions;
+		}
+		else if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
+			number << threeSolutions;
+		}
+		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
+			number << twoSolutions;
+		}
+		else {
+			number << 0;
+		}
+	}
 	string solutionFormat = printPuzzle() + "\nRow = " + number.str() +
 		"\nColumn = " + number.str() +
 		"\nReverse Row = " + number.str() +
 		"\nReverse Column = " + number.str() +
-		"\n(total for row & column, including reverse, in this configuration)" +
-		"\n2 = " + to_string(twoStateSolutions) +
-		"\n3 = " + to_string(threeStateSolutions) +
-		"\n4 = " + to_string(fourStateSolutions) +
-		"\n(total for row and column, including reverse, for all valid turns)";
-	number.str(string());
-	number << twoSolutions;
-	solutionFormat.append("\n2 = " + number.str());
-	number.str(string());
-	number << threeSolutions;
-	solutionFormat.append("\n3 = " + number.str());
-	number.str(string());
-	number << fourSolutions;
-	solutionFormat.append("\n4 = " + number.str() + "\n");
+		"\n(total for row & column, including reverse, in this configuration)";
+
+	sort(sequence.begin(), sequence.end());
+	for (auto value : sequence) {
+		if (value == 2) {
+			solutionFormat.append("\n2 = " + to_string(twoStateSolutions));
+		}
+		else if (value == 3) {
+			solutionFormat.append("\n3 = " + to_string(threeStateSolutions));
+		}
+		else if (value == 4) {
+			solutionFormat.append("\n4 = " + to_string(fourStateSolutions));
+		}
+	}
+		 
+	solutionFormat.append("\n(total for row and column, including reverse, for all valid turns)");
+
+	for (auto value : sequence) {
+		if (value == 2) {
+			number.str(string());
+			number << twoSolutions;
+			solutionFormat.append("\n2 = " + number.str());
+		}
+		else if (value == 3) {
+			number.str(string());
+			number << threeSolutions;
+			solutionFormat.append("\n3 = " + number.str());
+		}
+		else if (value == 4) {
+			number.str(string());
+			number << fourSolutions;
+			solutionFormat.append("\n4 = " + number.str() + "\n");
+		}
+	}	
 	return solutionFormat;
 }
 

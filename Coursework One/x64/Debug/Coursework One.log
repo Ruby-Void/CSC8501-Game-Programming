@@ -1,1 +1,53 @@
-﻿  Coursework One.vcxproj -> H:\C++\Coursework-One\Coursework-One\x64\Debug\Coursework One.exe
+﻿  Coursework One.cpp
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(107,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(155,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(178,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(225,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(246,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(297,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  FileHandler.cpp
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Coursework One.cpp(33,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(17,88): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(17,90): warning C5043: 'FileHandler::readFile': exception specification does not match previous declaration
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.h(16): message : see declaration of 'FileHandler::readFile'
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(67,81): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(67,83): warning C5043: 'FileHandler::writeFile': exception specification does not match previous declaration
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.h(17): message : see declaration of 'FileHandler::writeFile'
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(77,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(77,71): warning C5043: 'FileHandler::openInputFile': exception specification does not match previous declaration
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.h(22): message : see declaration of 'FileHandler::openInputFile'
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(90,70): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.cpp(90,72): warning C5043: 'FileHandler::openOutputFile': exception specification does not match previous declaration
+  Puzzle.cpp
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\FileHandler.h(23): message : see declaration of 'FileHandler::openOutputFile'
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(107,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(155,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(178,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(225,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(246,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(297,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(12,78): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(22,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(23,25): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(48,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(49,31): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(53,23): warning C4018: '<': signed/unsigned mismatch
+  PuzzleCollection.cpp
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(214,20): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(107,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(155,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(178,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(225,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(246,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  PuzzleFactory.cpp
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(297,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(107,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(155,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(178,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(225,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(246,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\BigInt.h(297,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  UserInputHandler.cpp
+  Generating Code...
+C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\PuzzleFactory.cpp(31,20): warning C4018: '<': signed/unsigned mismatch
+LINK : fatal error LNK1104: cannot open file 'C:\Users\ciara\Documents\GitHub\Coursework-One\x64\Debug\Coursework One.exe'

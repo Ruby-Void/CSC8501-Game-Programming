@@ -18,7 +18,7 @@ public:
 	void clearCollection();
 	void generateSolutions(unsigned int partial);
 	string printCollectionUnsolved();
-	string printCollectionSolved();
+	string printCollectionSolved(vector<unsigned int> sequence);
 private:
 	vector<Puzzle> puzzleSet;
 };

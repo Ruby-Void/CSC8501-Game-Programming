@@ -17,14 +17,14 @@ public:
 	unsigned int createStateSolution(int partials);
 	bigint createSolution(unsigned int partials);
 	string printPuzzle();
-	string printPuzzleSolution();
+	string printPuzzleSolution(vector<unsigned int> sequence);
 	void setStateSolutions(unsigned int partial, unsigned int value);
 	void setSolutions(unsigned int partial, bigint value);
 private:
 	const static unsigned int defaultMatrix = 1, defaultPuzzleSize = 15;
 	bigint twoSolutions, threeSolutions, fourSolutions;
 	unsigned int twoStateSolutions = 0, threeStateSolutions = 0, fourStateSolutions = 0;
-	unsigned int matrixSize, puzzleSize;
+	unsigned int matrixSize, tileSet;
 	vector<unsigned int> pattern, orderedPattern;
 	bigint factorial(unsigned int value);
 };

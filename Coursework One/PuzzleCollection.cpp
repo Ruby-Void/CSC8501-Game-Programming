@@ -37,10 +37,10 @@ string PuzzleCollection::printCollectionUnsolved() {
 	return puzzleCollectionFormat;
 }
 
-string PuzzleCollection::printCollectionSolved() {
+string PuzzleCollection::printCollectionSolved(vector<unsigned int> sequence) {
 	string puzzleCollectionFormat;
 	for (auto puzzle : puzzleSet) {
-		puzzleCollectionFormat.append(puzzle.printPuzzleSolution() + "\n");
+		puzzleCollectionFormat.append(puzzle.printPuzzleSolution(sequence) + "\n");
 	}
 	return puzzleCollectionFormat;
 }

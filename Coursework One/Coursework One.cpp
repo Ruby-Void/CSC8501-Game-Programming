@@ -29,8 +29,9 @@ int main() {
 			}
 			if (puzzleType == 'G' || puzzleType == 'g') {
 				unsigned int itterations = userInput.getUnsignedIntInput("Please specify how many generations: ");
+				unsigned int grid = userInput.getUnsignedIntInput("Please specify size of gird: ");
 				for (int i = 0; i < itterations; i++) {
-					collection.addPuzzle(factory.createGeneratedPattern());
+					collection.addPuzzle(factory.createGeneratedPattern(grid));
 				}
 			}
 			else if (puzzleType == 'I' || puzzleType == 'i') {
@@ -46,20 +47,39 @@ int main() {
 			} while (generationPuzzleSet != 'y' && generationPuzzleSet != 'Y' && generationPuzzleSet != 'n' && generationPuzzleSet != 'N');
 		}		
 
-		for (auto value : userInput.getSequenceInput("Please input a partial patterns (2, 3, 4) you wish to solve (use spaces to define different numbers) : \n")) {
-			collection.generateSolutions(value);
-		}
-
-		char printToConsole = ' ';
+		char outputType = ' ';
 		do {
-			printToConsole = userInput.getCharInput("Print to console? (y/Y/n/N): ");
-		} while (printToConsole != 'y' && printToConsole != 'Y' && printToConsole != 'n' && printToConsole != 'N');
+			outputType = userInput.getCharInput("Select which output type.\nNo Solutions = n/N\nSolutions = s/S\nOutput Type: ");
+		} while (outputType != 's' && outputType != 'S' && outputType != 'n' && outputType != 'N');
 
-		if (printToConsole == 'y' || printToConsole == 'Y') {
-			cout << "\nOutput:\n\n" << collection.printCollectionSolved();
+		if (outputType == 'n' || outputType == 'N') {
+			char printToConsole = ' ';
+			do {
+				printToConsole = userInput.getCharInput("Print to console? (y/Y/n/N): ");
+			} while (printToConsole != 'y' && printToConsole != 'Y' && printToConsole != 'n' && printToConsole != 'N');
+
+			if (printToConsole == 'y' || printToConsole == 'Y') {
+				cout << "\nOutput:\n\n" << collection.printCollectionUnsolved();
+			}
+			handler.writeFile(userInput.getFilenameInput("Please specify output file name: "), collection.printCollectionUnsolved());
 		}
+		else {
+			vector<unsigned int> sequence = userInput.getSequenceInput("Please input partial pattern(s) (2, 3, 4) you wish to solve (use spaces to define different numbers) : ");
+			for (auto value : sequence) {
+				collection.generateSolutions(value);
+			}
 
-		handler.writeFile(userInput.getFilenameInput("Please specify output file name: "), collection.printCollectionSolved());
+			char printToConsole = ' ';
+			do {
+				printToConsole = userInput.getCharInput("Print to console? (y/Y/n/N): ");
+			} while (printToConsole != 'y' && printToConsole != 'Y' && printToConsole != 'n' && printToConsole != 'N');
+
+			if (printToConsole == 'y' || printToConsole == 'Y') {
+				cout << "\nOutput:\n\n" << collection.printCollectionSolved(sequence);
+			}
+
+			handler.writeFile(userInput.getFilenameInput("Please specify output file name: "), collection.printCollectionSolved(sequence));						
+		}
 
 		do {
 			running = userInput.getCharInput("Continue? (y/Y/n/N): ");
