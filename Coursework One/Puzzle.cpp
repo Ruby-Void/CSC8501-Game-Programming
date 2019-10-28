@@ -103,52 +103,23 @@ string Puzzle::printPuzzle() {
 
 string Puzzle::printPuzzleSolution(vector<unsigned int> sequence) {
 	stringstream number;	
+	sort(sequence.begin(), sequence.end());
 	if (matrixSize == 3) { 
-		if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
-			number << threeSolutions;
-		}
-		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
-			number << twoSolutions;
-		}
-		else {
-			number << 0;
-		}
+		number << threeSolutions;
 	}
-	else if (matrixSize == 4) {
-		if (find(sequence.begin(), sequence.end(), 4) != pattern.end()) {
-			number << fourSolutions;
-		}
-		else if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
-			number << threeSolutions;
-		}
-		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
-			number << twoSolutions;
-		}
-		else {
-			number << 0;
-		}
+	else if (matrixSize >= 4) {
+		number << fourSolutions;		
 	}
-	else if (matrixSize > 4) {
-		if (find(sequence.begin(), sequence.end(), 4) != pattern.end()) {
-			number << fourSolutions;
-		}
-		else if (find(sequence.begin(), sequence.end(), 3) != pattern.end()) {
-			number << threeSolutions;
-		}
-		else if (find(sequence.begin(), sequence.end(), 2) != pattern.end()) {
-			number << twoSolutions;
-		}
-		else {
-			number << 0;
-		}
+	else {
+		number << 0;
 	}
+
 	string solutionFormat = printPuzzle() + "\nRow = " + number.str() +
 		"\nColumn = " + number.str() +
 		"\nReverse Row = " + number.str() +
 		"\nReverse Column = " + number.str() +
 		"\n(total for row & column, including reverse, in this configuration)";
 
-	sort(sequence.begin(), sequence.end());
 	for (auto value : sequence) {
 		if (value == 2) {
 			solutionFormat.append("\n2 = " + to_string(twoStateSolutions));

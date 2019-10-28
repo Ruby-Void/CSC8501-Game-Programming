@@ -1,13 +1,2 @@
-﻿  Coursework One.cpp
-  Puzzle.cpp
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Coursework One.cpp(33,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(22,30): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(23,25): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(48,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(49,31): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(53,23): warning C4018: '<': signed/unsigned mismatch
-  PuzzleFactory.cpp
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\Puzzle.cpp(214,20): warning C4018: '<=': signed/unsigned mismatch
-  Generating Code...
-C:\Users\ciara\Documents\GitHub\Coursework-One\Coursework One\PuzzleFactory.cpp(31,20): warning C4018: '<': signed/unsigned mismatch
-LINK : fatal error LNK1168: cannot open C:\Users\ciara\Documents\GitHub\Coursework-One\Debug\Coursework One.exe for writing
+﻿  PuzzleCollection.cpp
+  Coursework One.vcxproj -> H:\C++\Coursework-One\Coursework-One\Debug\Coursework One.exe

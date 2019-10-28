@@ -32,7 +32,7 @@ string PuzzleCollection::printCollectionUnsolved() {
 	string puzzleCollectionFormat;
 	puzzleCollectionFormat.append(to_string(puzzleSet.size()) + "\n");
 	for (auto puzzle : puzzleSet) {
-		puzzleCollectionFormat.append(puzzle.printPuzzle() + "\n");
+		puzzleCollectionFormat.append(puzzle.printPuzzle() + "\n\n");
 	}
 	return puzzleCollectionFormat;
 }

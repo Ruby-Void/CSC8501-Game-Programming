@@ -1,0 +1,48 @@
+5    7    3    
+2    8    9    
+1    4    0    
+row = 480
+column = 480
+reverse row = 480
+row column = 480
+(total for row and column, including reverse, in this configuration)
+2 = 3
+3 = 0
+Puzzle to small for partial size
+(total for row and column, including reverse, for all valid turns)
+2 = 10800
+3 = 480
+Puzzle to small for partial size
+12   7    3    13   
+15   14   1    16   
+10   6    17   5    
+2    9    19   0    
+row = 179625600
+column = 179625600
+reverse row = 179625600
+row column = 179625600
+(total for row and column, including reverse, in this configuration)
+2 = 1
+3 = 0
+4 = 0
+(total for row and column, including reverse, for all valid turns)
+2 = 18446744072598311936
+3 = 18446744070883683328
+4 = 179625600
+25   7    3    23   15   
+14   1    16   10   6    
+17   21   2    30   19   
+22   20   28   11   29   
+27   4    13   24   0    
+row = 877133824
+column = 877133824
+reverse row = 877133824
+row column = 877133824
+(total for row and column, including reverse, in this configuration)
+2 = 1
+3 = 0
+4 = 0
+(total for row and column, including reverse, for all valid turns)
+2 = 18446744061634674688
+3 = 2689597440
+4 = 18446744066752249856
